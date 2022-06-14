@@ -1,0 +1,12 @@
+<%= render 'shared/errors', obj: @user %>
+<%= form_with(model: @user, local: true) do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username, placeholder: "Enter a username" %>
+  <%= f.label :email %>
+  <%= f.email_field :email, placeholder: "Enter your email address" %>
+  <%= f.label :public_key %>
+  <%= f.text_field :public_key, placeholder: "Enter your public key" %>
+  <%= f.label :password %>
+  <%= f.password_field :password, placeholder: "Choose a password" %>
+  <%= f.submit %>
+<% end %>
