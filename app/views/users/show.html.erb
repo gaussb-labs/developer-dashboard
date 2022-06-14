@@ -1,0 +1,7 @@
+<h1 class="text-center mt-4"><%=@user.username %></h1>
+<p>Email: <%= @user.email %></p>
+<p>Public Key: <%= @user.public_key %></p>
+<%= link_to "Back", users_path %>
+</br>
+<%= link_to "Edit",edit_user_path(@user) %>
+

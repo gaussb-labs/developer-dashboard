@@ -1,0 +1,6 @@
+<h1 class="text-center mt-4">List Of All users</h1>
+<% @user.each do |user| %>
+  <p>User: <%= link_to user.username,user %></p>
+  <p>Public Key: <%= user.public_key %></p>
+  <p>---------------------------------------</p>
+<% end %>
