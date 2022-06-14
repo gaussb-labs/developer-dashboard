@@ -3,6 +3,8 @@
 <p>Public Key: <%= @user.public_key %></p>
 <%= link_to "Back", users_path %>
 </br>
+<% if logged_in? && @user = current_user %>
 <%= link_to "Edit",edit_user_path(@user) %>
+<% end %>
 </br>
 <%= link_to "Logout", logout_path, method: :delete %>
