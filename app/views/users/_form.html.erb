@@ -8,5 +8,5 @@
   <%= f.text_field :public_key, placeholder: "Enter your public key" %>
   <%= f.label :password %>
   <%= f.password_field :password, placeholder: "Choose a password" %>
-  <%= f.submit %>
+  <%= f.submit(@user.new_record? ? "Sign Up" : "Update account") %>
 <% end %>
