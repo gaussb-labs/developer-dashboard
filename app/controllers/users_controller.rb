@@ -17,9 +17,13 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def ssh
+    response = system(" bash shellscript.sh ")
+  end
+
   def update
     if @user.update(user_params)
-      flash[:notice] = "Your accound information was successfully updated"
+      flash[:notice] = "Your account information was successfully updated"
       redirect_to @user
     else
       render 'edit'
@@ -61,3 +65,4 @@ class UsersController < ApplicationController
     end
   end
 end
+
