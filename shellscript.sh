@@ -1,7 +1,7 @@
 #!/bin/sh
-public_ip=($(aws ec2 describe-instances --query "Reservations[*].Instances[*].PublicIpAddress" --output=text))
+#public_ip=($(aws ec2 describe-instances --query "Reservations[*].Instances[*].PublicIpAddress" --output=text))
+#
+#echo ${public_ip[*]}
 
-echo ${public_ip[*]}
-
-ssh-copy-id -i ~/.ssh/users_keys/id_rsa_arihant.pub ubuntu@${public_ip[1]}
+ssh-copy-id -i ~/.ssh/users_keys/id_rsa_premdeep.pub ubuntu@13.232.164.233
 
