@@ -17,9 +17,9 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def ssh
-    response = system(" bash shellscript.sh ")
-  end
+  # def ssh
+  #   response = system(" bash shellscript.sh ")
+  # end
 
   def update
     if @user.update(user_params)

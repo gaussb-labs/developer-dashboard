@@ -10,5 +10,5 @@
 # response = RestClient.get('https://ec2.amazonaws.com/?
 # Action=DescribeInstances
 #   &AWSAccessKeyId=AKIA4S4ZOFAEL62MGN6W')
-response = system(" bash shellscript.sh ")
+response = system(" bash list_script.sh ")
 # response_array = JSON.parse(response)
