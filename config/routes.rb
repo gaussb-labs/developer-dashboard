@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
   get 'hosts/create', to: 'hosts#create'
-  get 'hosts/ssh', to: 'hosts#ssh'
+  get '/users/:id/ssh(.:format)', to: 'users#ssh'
 end

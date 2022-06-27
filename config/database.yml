@@ -83,4 +83,4 @@ production:
   <<: *default
   database: dashboard_production
   username: dashboard
-  password: <%= ENV["DASHBOARD_DATABASE_PASSWORD"] %>
+  password: password
