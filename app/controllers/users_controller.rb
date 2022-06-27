@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :ssh]
   before_action :require_user, only: [:edit, :update]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
@@ -17,9 +17,11 @@ class UsersController < ApplicationController
   def edit
   end
 
-  # def ssh
-  #   response = system(" bash shellscript.sh ")
-  # end
+  def ssh
+    @user = User.find(params[:id])
+    puts @user.public_key
+    response = `ssh ssh-user@13.232.164.233 'echo "#{@user.public_key}" >> ~/.ssh/authorized_keys'`
+  end
 
   def update
     if @user.update(user_params)

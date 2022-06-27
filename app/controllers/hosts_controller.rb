@@ -15,8 +15,8 @@ class HostsController < ApplicationController
     @host = Host.all
   end
 
-  def ssh
-    response = `bash shellscript.sh`
-  end
+  # def ssh
+  #   response = `cat ~/.ssh/id_ed25519.pub | ssh ssh-user@13.232.164.233 'cat >> ~/.ssh/authorized_keys'`
+  # end
 
 end
