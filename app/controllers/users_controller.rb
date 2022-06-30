@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  require 'open3'
   before_action :set_user, only: [:show, :edit, :update, :destroy, :ssh]
   before_action :require_user, only: [:edit, :update]
   before_action :require_same_user, only: [:edit, :update, :destroy]
@@ -19,13 +20,17 @@ class UsersController < ApplicationController
 
   def ssh
     @user = User.find(params[:id])
-    puts @user.public_key
-    response = `ssh ssh-user@13.232.164.233 'echo "#{@user.public_key}" >> ~/.ssh/authorized_keys'`
+    @host = '13.232.164.233'
+    script = "ssh ssh-user@#{@host} \"bash -s\" < ./add_user.sh \"#{@user.username}\" \"#{@user.public_key}\""
+    Open3.popen3(script) do |stdin, stdout, stderr|
+      puts stdout.read
+      puts stderr.read
+    end
   end
 
   def update
     if @user.update(user_params)
-      flash[:notice] = "Your account information was successfully updated"
+      flash[:notice] = 'Your account information was successfully updated'
       redirect_to @user
     else
       render 'edit'
@@ -36,7 +41,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash[:notice] = "You have successfully signed up"
+      flash[:notice] = 'You have successfully signed up'
       redirect_to @user
     else
       render 'new'
@@ -46,7 +51,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     session[:user_id] = nil
-    flash[:notice] = "Account and all associated host are successfully deleted"
+    flash[:notice] = 'Account and all associated host are successfully deleted'
     redirect_to articles_path
   end
 
@@ -62,7 +67,7 @@ class UsersController < ApplicationController
 
   def require_same_user
     if current_user != @user && !current_user.admin?
-      flash[:alert] = "You can only edit your own account"
+      flash[:alert] = 'You can only edit your own account'
       redirect_to @user
     end
   end
