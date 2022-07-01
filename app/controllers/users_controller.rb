@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     @user.destroy
     session[:user_id] = nil
     flash[:notice] = 'Account and all associated host are successfully deleted'
-    redirect_to articles_path
+    redirect_to users_path
   end
 
   private
