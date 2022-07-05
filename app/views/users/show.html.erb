@@ -4,9 +4,12 @@
 <%= link_to "Back", users_path %>
 </br>
 <% if logged_in? && @user = current_user %>
+  <%= link_to "Add_host", ssh_path %>
+  </br>
   <%= link_to "Edit", edit_user_path(@user) %>
+  </br>
+  <%= link_to "Logout", logout_path, method: :delete %>
 <% end %>
-</br>
-<%= link_to "Logout", logout_path, method: :delete %>
-</br>
-<%= link_to "Add_host", ssh_path %>
+
+
+

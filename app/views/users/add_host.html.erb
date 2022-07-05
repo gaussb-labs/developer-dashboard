@@ -1,6 +1,7 @@
 <%= form_with url: ssh_path, local: true, method: :post do %>
-  <%= label_tag "feedback_type" %>
-  <%= select_tag "select_host", options_for_select(Host.all.map { |host| [host.hostname, host.hostIP] }), prompt: 'Choose one...' %>
+  <h1><%= label_tag "Select Host" %></h1>
+  </br>
+  <%= select_tag "select_host", options_for_select(Host.all.map { |host| [host.hostname, host.hostIP] }), prompt: 'Choose One' %>
   <%= submit_tag "Add User" %>
 <% end %>
 
