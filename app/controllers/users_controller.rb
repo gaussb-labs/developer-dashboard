@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   end
 
   def ssh
+    binding.pry
     @user = current_user
     @hostIP = params[:select_host]
     puts @user.username

@@ -2,6 +2,6 @@
 <% @host.each do |host| %>
   HostName:<%= host.hostname %>
   <br>
-  PublicIp:<%= link_to host.hostIP, users_url%>
+  PublicIp:<%= link_to host.hostIP, ssh_path(current_user)%>
   <br>
 <% end %>

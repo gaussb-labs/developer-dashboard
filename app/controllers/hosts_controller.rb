@@ -10,6 +10,8 @@ class HostsController < ApplicationController
       @host.hostIP = host[0]
       @host.hostname = host[1]
       @host.save
+      puts @host.errors.any?
+      puts @host.errors.full_messages
     end
   end
 
