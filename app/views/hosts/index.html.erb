@@ -1,8 +1,7 @@
 <h1>List Of Hosts</h1>
 <% @host.each do |host| %>
-  HostName:<%= link_to host.hostname, hosts_ssh_path %>
+  HostName:<%= host.hostname %>
   <br>
-  PublicIp:<%= host.hostIP %>
+  PublicIp:<%= link_to host.hostIP, ssh_path(current_user)%>
   <br>
 <% end %>
-

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_23_205125) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_01_092829) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_23_205125) do
     t.string "hostIP"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_host_associations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "host_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["host_id"], name: "index_user_host_associations_on_host_id"
+    t.index ["user_id"], name: "index_user_host_associations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -31,4 +40,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_23_205125) do
     t.boolean "admin", default: false
   end
 
+  add_foreign_key "user_host_associations", "hosts"
+  add_foreign_key "user_host_associations", "users"
 end
