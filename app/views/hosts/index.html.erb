@@ -2,7 +2,6 @@
 <% @host.each do |host| %>
   HostName:<%= host.hostname %>
   <br>
-  PublicIp:<%= host.hostIP %>
+  PublicIp:<%= link_to host.hostIP, users_url%>
   <br>
 <% end %>
-

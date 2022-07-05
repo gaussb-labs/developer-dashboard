@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   require 'open3'
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :ssh]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_user, only: [:edit, :update]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   end
 
   def show
+
   end
 
   def index
@@ -18,13 +19,27 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def add_host
+    respond_to do |format|
+      format.html { render :'users/add_host' }
+    end
+  end
+
   def ssh
-    @user = User.find(params[:id])
-    @host = '13.232.164.233'
-    script = "ssh ssh-user@#{@host} \"bash -s\" < ./add_user.sh \"#{@user.username}\" \"#{@user.public_key}\""
+    @user = current_user
+    @hostIP = params[:select_host]
+    puts @user.username
+    puts @user.public_key
+    puts @hostIP
+    script = "ssh ssh-user@#{@hostIP} \"bash -s\" < ./add_user.sh \"#{@user.username}\" \"#{@user.public_key}\""
     Open3.popen3(script) do |stdin, stdout, stderr|
       puts stdout.read
       puts stderr.read
+    end
+    @user_host = Host.find_by(hostIP: "#{@hostIP}")
+    @user.hosts << @user_host
+    respond_to do |format|
+      format.html { render :'users/add_host' }
     end
   end
 
@@ -32,8 +47,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       flash[:notice] = 'Your account information was successfully updated'
       redirect_to @user
-    else
-      render 'edit'
+    else render 'edit'
     end
   end
 
@@ -43,8 +57,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       flash[:notice] = 'You have successfully signed up'
       redirect_to @user
-    else
-      render 'new'
+    else render 'new'
     end
   end
 
@@ -58,7 +71,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def user_params
