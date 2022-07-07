@@ -15,6 +15,7 @@
 # gem "pg"
 #
 default: &default
+  host: postgres
   adapter: postgresql
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
@@ -59,6 +60,7 @@ test:
   <<: *default
   database: dashboard_test
   username: dashboard
+  password: password
 
 
 # As with config/credentials.yml, you never want to store sensitive information,
