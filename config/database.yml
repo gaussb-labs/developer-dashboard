@@ -57,9 +57,10 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-#  host: postgres
+  host: localhost
   database: dashboard_test
   username: sandeepsaini
+  password: password
 
 
 
