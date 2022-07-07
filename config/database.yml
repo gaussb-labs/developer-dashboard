@@ -15,7 +15,6 @@
 # gem "pg"
 #
 default: &default
-  host: postgres
   adapter: postgresql
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
@@ -58,6 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+#  host: postgres
   database: dashboard_test
   username: dashboard
   password: password
