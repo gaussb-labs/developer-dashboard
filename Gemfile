@@ -22,7 +22,7 @@ gem "importmap-rails"
 gem "turbo-rails"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
+# gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
@@ -40,8 +40,8 @@ gem "bcrypt", "~> 3.1.7"
 gem 'ed25519', '>= 1.2', '< 2.0'
 gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 gem 'net-ssh', '!= 2.10.0'
-gem 'jsbundling-rails'  # needed for bootstrap javascript
-gem 'cssbundling-rails' # Install bootstrap 5
+# gem 'jsbundling-rails'  # needed for bootstrap javascript
+# gem 'cssbundling-rails' # Install bootstrap 5
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]

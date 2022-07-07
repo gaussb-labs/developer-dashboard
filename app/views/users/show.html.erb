@@ -3,13 +3,22 @@
 <p>Public Key: <%= @user.public_key %></p>
 <%= link_to "Back", users_path %>
 </br>
-<% if logged_in? && @user = current_user %>
+<% if logged_in? && @user == current_user %>
+  <h6>List of <%= @user.username %>'s hosts:</h6>
+  <% @user.hosts.each do |host| %>
+     - <%= host.hostname %>: <%= host.hostIP %>
+    </br>
+  <% end %>
+  </br>
   <%= link_to "Add_host", ssh_path %>
   </br>
   <%= link_to "Edit", edit_user_path(@user) %>
   </br>
   <%= link_to "Logout", logout_path, method: :delete %>
+  <%= link_to "" %>
 <% end %>
+</br>
+<%= link_to "Host Index", hosts_index_path %>
 
 
 
