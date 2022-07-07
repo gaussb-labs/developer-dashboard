@@ -59,7 +59,7 @@ test:
   <<: *default
   host: localhost
   database: dashboard_test
-  username: sandeepsaini
+  username: dashboard
   password: password
 
 
