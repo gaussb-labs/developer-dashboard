@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'hosts/index'
-  resources :users, except: [:new]
+  resources :users, except: [:new, :destroy]
+  get 'destroy', to: 'users#destroy'
   root "sessions#new"
   get 'signup', to: 'users#new'
   get 'login', to: 'sessions#new'

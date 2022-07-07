@@ -5,3 +5,7 @@
   PublicIp:<%= link_to host.hostIP, ssh_path(current_user)%>
   <br>
 <% end %>
+<br>
+<%= link_to 'back', user_path(current_user) %>
+<%= link_to 'refresh/create', hosts_create_path %>
+

@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   require 'open3'
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update]
   before_action :require_user, only: [:edit, :update]
-  before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_same_user, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -26,7 +26,6 @@ class UsersController < ApplicationController
   end
 
   def ssh
-    binding.pry
     @user = current_user
     @hostIP = params[:select_host]
     puts @user.username
@@ -63,6 +62,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:format])
     @user.destroy
     session[:user_id] = nil
     flash[:notice] = 'Account and all associated host are successfully deleted'
@@ -72,7 +72,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def user_params

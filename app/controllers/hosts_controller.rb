@@ -13,6 +13,7 @@ class HostsController < ApplicationController
       puts @host.errors.any?
       puts @host.errors.full_messages
     end
+    redirect_to hosts_index_path
   end
 
   def show; end
